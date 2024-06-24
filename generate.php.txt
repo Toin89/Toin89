@@ -1,0 +1,28 @@
+<?php
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $nome = htmlspecialchars($_POST['nome']);
+    $dataNascimento = htmlspecialchars($_POST['dataNascimento']);
+    $idade = htmlspecialchars($_POST['idade']);
+    $experiencias = $_POST['empresa'];
+    $cargos = $_POST['cargo'];
+    $periodos = $_POST['periodo'];
+    
+    ob_start();
+    include 'templates/template.html';
+    $content = ob_get_clean();
+    
+    $content = str_replace('{{NOME}}', $nome, $content);
+    $content = str_replace('{{DATA_NASCIMENTO}}', $dataNascimento, $content);
+    $content = str_replace('{{IDADE}}', $idade, $content);
+    
+    $experienciasHTML = '';
+    for ($i = 0; $i < count($experiencias); $i++) {
+        $experienciasHTML .= "<p><strong>Empresa:</strong> {$experiencias[$i]}<br>";
+        $experienciasHTML .= "<strong>Cargo:</strong> {$cargos[$i]}<br>";
+        $experienciasHTML .= "<strong>Período:</strong> {$periodos[$i]}</p>";
+    }
+    $content = str_replace('{{EXPERIENCIAS}}', $experienciasHTML, $content);
+    
+    echo $content;
+}
+?>

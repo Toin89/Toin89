@@ -1,0 +1,2 @@
+mkdir js
+touch js/script.js

@@ -1,0 +1,20 @@
+$(document).ready(function () {
+    $('#dataNascimento').change(function () {
+        const birthDate = new Date($(this).val());
+        const age = new Date().getFullYear() - birthDate.getFullYear();
+        $('#idade').val(age);
+    });
+
+    $('#addExperiencia').click(function () {
+        const experienciaHTML = `
+            <div class="experiencia mb-3">
+                <label for="empresa" class="form-label">Empresa</label>
+                <input type="text" class="form-control" name="empresa[]" required>
+                <label for="cargo" class="form-label">Cargo</label>
+                <input type="text" class="form-control" name="cargo[]" required>
+                <label for="periodo" class="form-label">Período</label>
+                <input type="text" class="form-control" name="periodo[]" required>
+            </div>`;
+        $('#experiencias').append(experienciaHTML);
+    });
+});

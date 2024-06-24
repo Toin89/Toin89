@@ -1,0 +1,2 @@
+mkdir curriculo-generator
+cd curriculo-generator
